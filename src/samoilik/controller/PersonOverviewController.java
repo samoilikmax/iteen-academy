@@ -1,6 +1,8 @@
-package samoilik.view;
+package samoilik.controller;
 
-import samoilik.DateUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import samoilik.util.DateUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -24,7 +26,7 @@ public class PersonOverviewController {
     @FXML
     private Label streetLabel;
     @FXML
-    private Label postalCodeLabel;
+    private Label phoneNumberLabel;
     @FXML
     private Label cityLabel;
     @FXML
@@ -32,9 +34,24 @@ public class PersonOverviewController {
 
     private MainApp mainApp;
 
+    private ObservableList<Person> personData = FXCollections.observableArrayList();
+
+
+
+    /**
+     * Возвращает данные в виде наблюдаемого списка адресатов.
+     *
+     * @return
+     */
+    public ObservableList<Person> getPersonData() {
+        return personData;
+    }
+
 
     public PersonOverviewController() {
     }
+
+
 
 
     @FXML
@@ -43,10 +60,8 @@ public class PersonOverviewController {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
 
-
         personTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showPersonDetails(newValue));
-
 
     }
 
@@ -54,29 +69,18 @@ public class PersonOverviewController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
-
-        personTable.setItems(mainApp.getPersonData());
+        personTable.setItems(getPersonData());
     }
+
 
     private void showPersonDetails(Person person) {
         if (person != null) {
-
             firstNameLabel.setText(person.getFirstName());
             lastNameLabel.setText(person.getLastName());
             streetLabel.setText(person.getStreet());
-            postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
+            phoneNumberLabel.setText(person.getPhoneNumber());
             cityLabel.setText(person.getCity());
-
             birthdayLabel.setText(DateUtil.format(person.getBirthday()));
-
-        } else {
-
-            firstNameLabel.setText("");
-            lastNameLabel.setText("");
-            streetLabel.setText("");
-            postalCodeLabel.setText("");
-            cityLabel.setText("");
-            birthdayLabel.setText("");
         }
     }
 
@@ -86,12 +90,13 @@ public class PersonOverviewController {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         personTable.getItems().remove(selectedIndex);
     }
+
     @FXML
     private void handleNewPerson() {
         Person tempPerson = new Person();
         boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
         if (okClicked) {
-            mainApp.getPersonData().add(tempPerson);
+            getPersonData().add(tempPerson);
         }
     }
 

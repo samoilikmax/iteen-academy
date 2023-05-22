@@ -2,20 +2,17 @@ package samoilik.model;
 
 import java.time.LocalDate;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
 
 public class Person {
 
     private final StringProperty firstName;
     private final StringProperty lastName;
     private final StringProperty street;
-    private final IntegerProperty postalCode;
+    private final StringProperty phoneNumber;
     private final StringProperty city;
     private final ObjectProperty<LocalDate> birthday;
 
@@ -30,10 +27,10 @@ public class Person {
         this.lastName = new SimpleStringProperty(lastName);
 
         // Какие-то фиктивные начальные данные для удобства тестирования.
-        this.street = new SimpleStringProperty("какая-то улица");
-        this.postalCode = new SimpleIntegerProperty(1234);
-        this.city = new SimpleStringProperty("какой-то город");
-        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+        this.street = new SimpleStringProperty();
+        this.phoneNumber = new SimpleStringProperty();
+        this.city = new SimpleStringProperty();
+        this.birthday = new SimpleObjectProperty<LocalDate>();
     }
 
     public String getFirstName() {
@@ -72,16 +69,16 @@ public class Person {
         return street;
     }
 
-    public int getPostalCode() {
-        return postalCode.get();
+    public String getPhoneNumber() {
+        return phoneNumber.get();
     }
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode.set(postalCode);
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber.set(phoneNumber);
     }
 
-    public IntegerProperty postalCodeProperty() {
-        return postalCode;
+    public StringProperty phoneNumberProperty() {
+        return phoneNumber;
     }
 
     public String getCity() {
