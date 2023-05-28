@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="samoilik.controller.PersonOverviewController">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="samoilik.controller.PersonOverviewController">
    <children>
-      <AnchorPane layoutY="1.0" prefHeight="400.0" prefWidth="600.0" />
-      <SplitPane dividerPositions="0.29797979797979796" layoutY="46.0" prefHeight="370.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+      <AnchorPane layoutY="1.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@DarkTheme.css" />
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -29,7 +29,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="background">
                <children>
                   <GridPane layoutY="31.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
                     <columnConstraints>
@@ -59,11 +59,11 @@
                         <Label fx:id="birthdayLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
-                  <ButtonBar layoutX="122.0" layoutY="302.0" prefHeight="50.0" prefWidth="290.0" AnchorPane.bottomAnchor="31.600000000000023" AnchorPane.rightAnchor="5.2000000000000455">
+                  <ButtonBar layoutX="122.0" layoutY="302.0" prefHeight="42.0" prefWidth="418.0" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="5.0">
                      <buttons>
-                        <ButtonBar prefHeight="40.0" prefWidth="266.0">
+                        <ButtonBar prefHeight="50.0" prefWidth="397.0">
                           <buttons>
-                            <Button mnemonicParsing="false" onAction="#handleNewPerson" text="New" />
+                            <Button mnemonicParsing="false" onAction="#handleNewPerson" prefHeight="34.0" prefWidth="234.0" text="New" />
                               <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Edit" />
                               <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" />
                           </buttons>
