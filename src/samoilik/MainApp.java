@@ -6,8 +6,6 @@ import samoilik.model.Person;
 import samoilik.controller.PersonEditDialogController;
 import samoilik.controller.PersonOverviewController;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -32,17 +30,12 @@ public class MainApp extends Application {
         showPersonOverview();
     }
 
-    /**
-     * Инициализирует корневой макет.
-     */
     public void initRootLayout() {
         try {
-            // Загружаем корневой макет из fxml файла.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-            // Отображаем сцену, содержащую корневой макет.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -51,20 +44,14 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Показывает в корневом макете сведения об адресатах.
-     */
     public void showPersonOverview() {
         try {
-            // Загружаем сведения об адресатах.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/PersonOverview.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
 
-            // Помещаем сведения об адресатах в центр корневого макета.
             rootLayout.setCenter(personOverview);
 
-            // Даём контроллеру доступ к главному приложению.
             PersonOverviewController controller = loader.getController();
             controller.setMainApp(this);
 
@@ -73,11 +60,6 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Возвращает главную сцену.
-     *
-     * @return
-     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -86,23 +68,12 @@ public class MainApp extends Application {
         launch(args);
     }
 
-    /**
-     * Открывает диалоговое окно для изменения деталей указанного адресата.
-     * Если пользователь кликнул OK, то изменения сохраняются в предоставленном
-     * объекте адресата и возвращается значение true.
-     *
-     * @param person - объект адресата, который надо изменить
-     * @return true, если пользователь кликнул OK, в противном случае false.
-     */
     public boolean showPersonEditDialog(Person person) {
         try {
-            // Загружаем fxml-файл и создаём новую сцену
-            // для всплывающего диалогового окна.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/PersonEditDialog.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
-            // Создаём диалоговое окно Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Person");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -110,12 +81,10 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Передаём адресата в контроллер.
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setPerson(person);
 
-            // Отображаем диалоговое окно и ждём, пока пользователь его не закроет
             dialogStage.showAndWait();
 
             return controller.isOkClicked();

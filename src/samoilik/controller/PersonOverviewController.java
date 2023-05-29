@@ -38,11 +38,6 @@ public class PersonOverviewController {
 
 
 
-    /**
-     * Возвращает данные в виде наблюдаемого списка адресатов.
-     *
-     * @return
-     */
     public ObservableList<Person> getPersonData() {
         return personData;
     }
